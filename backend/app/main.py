@@ -12,7 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
 from app.database.mongodb import connect_to_mongo, close_mongo_connection
-from app.routes import health, farmer
+from app.routes import health, farmer, dashboard
 
 
 @asynccontextmanager
@@ -42,6 +42,7 @@ app.add_middleware(
 # Register route modules
 app.include_router(health.router)
 app.include_router(farmer.router)
+app.include_router(dashboard.router)
 
 
 @app.get("/")

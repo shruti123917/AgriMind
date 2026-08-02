@@ -1,6 +1,5 @@
 /**
  * API service — central place for all backend HTTP calls.
- * Uses Vite proxy in dev; point to full URL in production.
  */
 
 import axios from 'axios'
@@ -27,5 +26,9 @@ export const listFarmerProfiles = () =>
 
 export const updateFarmerProfile = (id, data) =>
   api.put(`/api/farmer/profile/${id}`, data)
+
+// ── Dashboard / Crop Lifecycle ──────────────────────────
+export const getDashboard = (profileId) =>
+  api.get(`/api/dashboard/${profileId}`)
 
 export default api
