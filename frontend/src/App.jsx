@@ -4,10 +4,13 @@ import Dashboard from './pages/Dashboard'
 import FarmerProfile from './pages/FarmerProfile'
 import CropRecommendation from './pages/CropRecommendation'
 import CropCalendar from './pages/CropCalendar'
-import DiseaseDetection from './pages/DiseaseDetection'
 import RiskAnalysis from './pages/RiskAnalysis'
 import WhatIfSimulator from './pages/WhatIfSimulator'
 import AIAssistant from './pages/AIAssistant'
+import YieldPrediction from './pages/YieldPrediction'
+import DiseaseDetection from "./pages/DiseaseDetection";
+import PredictionHistory from "./pages/PredictionHistory";
+
 
 function App() {
   return (
@@ -22,6 +25,9 @@ function App() {
           <Route path="risk" element={<RiskAnalysis />} />
           <Route path="simulator" element={<WhatIfSimulator />} />
           <Route path="assistant" element={<AIAssistant />} />
+          <Route path="/yield-prediction" element={<YieldPrediction />}/>
+          <Route path="/disease-detection" element={<DiseaseDetection />}/>
+          <Route path="/history" element={<PredictionHistory />}/>
         </Route>
       </Routes>
     </BrowserRouter>

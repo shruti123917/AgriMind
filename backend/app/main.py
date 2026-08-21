@@ -12,8 +12,16 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
 from app.database.mongodb import connect_to_mongo, close_mongo_connection
-from app.routes import health, farmer, dashboard
-
+from app.routes import (
+    health,
+    farmer,
+    dashboard,
+    recommendation,
+    yield_prediction,
+)
+from app.routes.disease_detection import router as disease_router
+from app.routes import history
+from app.routes import analytics
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -43,6 +51,15 @@ app.add_middleware(
 app.include_router(health.router)
 app.include_router(farmer.router)
 app.include_router(dashboard.router)
+app.include_router(recommendation.router)
+app.include_router(yield_prediction.router)
+app.include_router(
+    disease_router,
+    prefix="/api",
+    tags=["Disease Detection"]
+)
+app.include_router(history.router)
+app.include_router(analytics.router)
 
 
 @app.get("/")

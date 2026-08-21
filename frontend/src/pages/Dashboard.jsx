@@ -5,9 +5,30 @@ import CropStatusSection from '../components/dashboard/CropStatusSection'
 import AIInsightsGrid from '../components/dashboard/AIInsightsGrid'
 import QuickActions from '../components/dashboard/QuickActions'
 import EmptyState from '../components/ui/EmptyState'
+import { useEffect, useState } from "react";
+import axios from "axios";
+import AnalyticsCards from "../components/dashboard/AnalyticsCards";
 
 export default function Dashboard() {
   const { dashboard, loading, error, hasProfile } = useFarmer()
+
+  const [analytics, setAnalytics] = useState(null)
+
+  useEffect(() => {
+    fetchAnalytics()
+  }, [])
+
+  const fetchAnalytics = async () => {
+    try {
+      const res = await axios.get(
+        'http://127.0.0.1:8000/analytics/dashboard'
+      )
+
+      setAnalytics(res.data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
 
   if (loading) {
     return (
@@ -40,6 +61,8 @@ export default function Dashboard() {
           {error}
         </div>
       )}
+
+      <AnalyticsCards analytics={analytics} />
 
       {/* Top row: Farm overview + Crop status */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">

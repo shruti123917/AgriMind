@@ -31,4 +31,30 @@ export const updateFarmerProfile = (id, data) =>
 export const getDashboard = (profileId) =>
   api.get(`/api/dashboard/${profileId}`)
 
+// ── Crop Recommendation ────────────────────────────────
+export const getCropRecommendation = (data) =>
+  api.post('/api/recommendation', data)
+
+// ── Yield Prediction ─────────────────────────────────────
+export const getYieldPrediction = (data) =>
+  api.post('/api/yield', data)
+
+export const detectDisease = async (file) => {
+  const formData = new FormData();
+
+  formData.append("file", file);
+
+  const response = await api.post(
+    "/api/disease-detection",
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+
+  return response.data;
+};
+
 export default api

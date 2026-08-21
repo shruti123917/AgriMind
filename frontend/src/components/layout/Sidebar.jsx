@@ -9,19 +9,26 @@ import {
   FlaskConical,
   Bot,
   Leaf,
+  BarChart3,
 } from 'lucide-react'
+import { History } from "lucide-react";
+
 
 const navItems = [
   { to: '/', label: 'Dashboard', icon: LayoutDashboard },
   { to: '/profile', label: 'Farmer Profile', icon: User },
   { to: '/recommendation', label: 'Crop Recommendation', icon: Sprout },
+
+  { to: '/yield-prediction', label: 'Yield Prediction', icon: BarChart3 },
+
   { to: '/calendar', label: 'Crop Calendar', icon: Calendar },
-  { to: '/disease', label: 'Disease Detection', icon: Bug },
   { to: '/risk', label: 'Risk Analysis', icon: ShieldAlert },
   { to: '/simulator', label: 'What-If Simulator', icon: FlaskConical },
   { to: '/assistant', label: 'AI Assistant', icon: Bot },
+  { to: "/disease-detection", label: "Disease Detection",icon: Bug,},
+  {to: "/history",label: "Prediction History",icon: History,
+},
 ]
-
 export default function Sidebar() {
   return (
     <aside className="fixed left-0 top-0 z-30 flex h-screen w-64 flex-col bg-primary-900 text-white shadow-xl">
