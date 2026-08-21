@@ -8,15 +8,24 @@ import EmptyState from '../components/ui/EmptyState'
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AnalyticsCards from "../components/dashboard/AnalyticsCards";
+import { getWeather } from '../services/api'
+import WeatherCard from '../components/dashboard/WeatherCard'
 
 export default function Dashboard() {
   const { dashboard, loading, error, hasProfile } = useFarmer()
 
   const [analytics, setAnalytics] = useState(null)
+  const [weather, setWeather] = useState(null)
 
   useEffect(() => {
     fetchAnalytics()
   }, [])
+
+  useEffect(() => {
+    if (dashboard?.location) {
+      fetchWeather()
+    }
+  }, [dashboard])
 
   const fetchAnalytics = async () => {
     try {
@@ -25,6 +34,19 @@ export default function Dashboard() {
       )
 
       setAnalytics(res.data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const fetchWeather = async () => {
+    try {
+      const city =
+        dashboard.location.split(',')[0]
+
+      const res = await getWeather(city)
+
+      setWeather(res.data)
     } catch (err) {
       console.error(err)
     }
@@ -63,6 +85,8 @@ export default function Dashboard() {
       )}
 
       <AnalyticsCards analytics={analytics} />
+
+      <WeatherCard weather={weather} />
 
       {/* Top row: Farm overview + Crop status */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">

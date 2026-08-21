@@ -39,6 +39,9 @@ export const getCropRecommendation = (data) =>
 export const getYieldPrediction = (data) =>
   api.post('/api/yield', data)
 
+export const getWeather = (city) =>
+  api.get(`/api/weather/${city}`)
+
 export const detectDisease = async (file) => {
   const formData = new FormData();
 

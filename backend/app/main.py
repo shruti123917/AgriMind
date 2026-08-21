@@ -18,6 +18,7 @@ from app.routes import (
     dashboard,
     recommendation,
     yield_prediction,
+    weather,
 )
 from app.routes.disease_detection import router as disease_router
 from app.routes import history
@@ -54,6 +55,7 @@ app.include_router(farmer.router)
 app.include_router(dashboard.router)
 app.include_router(recommendation.router)
 app.include_router(yield_prediction.router)
+app.include_router(weather.router)
 app.include_router(
     disease_router,
     prefix="/api",
