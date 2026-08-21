@@ -23,7 +23,6 @@ const navItems = [
 
   { to: '/calendar', label: 'Crop Calendar', icon: Calendar },
   { to: '/risk', label: 'Risk Analysis', icon: ShieldAlert },
-  { to: '/simulator', label: 'What-If Simulator', icon: FlaskConical },
   { to: '/assistant', label: 'AI Assistant', icon: Bot },
   { to: "/disease-detection", label: "Disease Detection",icon: Bug,},
   {to: "/history",label: "Prediction History",icon: History,

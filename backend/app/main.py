@@ -22,6 +22,7 @@ from app.routes import (
 from app.routes.disease_detection import router as disease_router
 from app.routes import history
 from app.routes import analytics
+from app.routes import ai_assistant
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -60,6 +61,7 @@ app.include_router(
 )
 app.include_router(history.router)
 app.include_router(analytics.router)
+app.include_router(ai_assistant.router)
 
 
 @app.get("/")

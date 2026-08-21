@@ -57,4 +57,20 @@ export const detectDisease = async (file) => {
   return response.data;
 };
 
+export const askAIAssistant = async (
+  question,
+  profileId
+) => {
+
+  const response = await api.post(
+    "/api/ai-assistant/chat",
+    {
+      question,
+      profile_id: profileId,
+    }
+  )
+
+  return response.data
+}
+
 export default api
